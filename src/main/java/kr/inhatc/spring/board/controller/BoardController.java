@@ -34,7 +34,7 @@ public class BoardController {
 
 	// log로 불러온 정보를 파일로 저장하기 위해서
 	private Logger log = LoggerFactory.getLogger(this.getClass());
-//예지민 커밋 테스트
+//예지민 커밋 테스트-------
 	@Autowired
 	private BoardService boardService;
 
