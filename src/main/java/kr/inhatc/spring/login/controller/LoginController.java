@@ -23,6 +23,5 @@ public class LoginController {
 	public void logout() {
 		System.out.println("================>로그아웃");
 	}
-	
 
 }

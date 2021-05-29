@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default_Admin">
 <head>
 <meta charset="UTF-8">
 <title>게시판 작성</title>
@@ -9,7 +11,8 @@
 	<div class="container">
 		<h2>게시판 작성</h2>
 
-		<form id="frm" name="frm" method="POST" action="/board/boardInsert" enctype="multipart/form-data">
+		<form id="frm" name="frm" method="POST"
+			action="/board/boardInsert/admin" enctype="multipart/form-data">
 			<table class="board_detail">
 				<tr>
 					<td>제목</td>

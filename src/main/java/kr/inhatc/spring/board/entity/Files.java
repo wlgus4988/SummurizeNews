@@ -37,7 +37,7 @@ public class Files {
 	private long fileSize;
 	//private String username;
 	
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(insertable = false, updatable = false, columnDefinition = "date default sysdate")
 	private Date createDatetime;
 }

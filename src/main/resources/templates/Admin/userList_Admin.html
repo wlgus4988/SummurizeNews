@@ -15,9 +15,17 @@
 <div layout:fragment="content">
 
    <div class="container">
-		<h2>사용자 리스트 목록</h2>
+		<h2>사용자 리스트</h2>
 
-		<table class="table table-hover">
+		<table class="board_list">
+		<colgroup>
+				<col width="14%" />
+				<col width="14%" />
+				<col width="20%" />
+				<col width="20%" />				
+				<col width="15%" />
+				<col width="22%" />
+			</colgroup>
 			<thead>
 				<tr>
 					<th>아이디</th>
@@ -35,7 +43,7 @@
 					<img id ="img" alt="" src="">
 					</td> -->
 					<td>
-						<a th:href="@{/user/userDetail/{username}(username=${vo.username})}" th:text="${vo.username}"></a>
+						<a th:href="@{/user/userDetail/admin/{username}(username=${vo.username})}" th:text="${vo.username}"></a>
 					  <!-- <a th:href="@{/user/userDetail/(id=${vo.id})"></a>  -->
 					</td>
 
@@ -71,7 +79,7 @@
 		</nav>
  		<form class="d-flex justify-content-end">
 		<button type="button" class="btn btn-outline-primary" >
-			 <a href="/user/userInsert">사용자 추가</a>
+			 <a href="/user/userInsert/admin">사용자 추가</a>
 		</button>
 		</form>
 		 <form class="d-flex" method="GET" th:action="@{/user/userList/admin}">

@@ -25,7 +25,7 @@ public interface BoardRepository extends CrudRepository<Boards, Integer> {
 	@Query("SELECT file FROM Files file WHERE board_idx = :boardIdx AND idx = :idx")
 	Files selectFileInfo(@Param("idx") int idx, @Param("boardIdx") int boardIdx);
 
-	Page<Boards> findByContentsContainingOrTitleContaining(String searchText, String searchText2, Pageable pageable);
+	Page<Boards> findByUsernameContainingOrTitleContaining(String searchText, String searchText2, Pageable pageable);
 
 //	Page<Boards> findByPage(Pageable pageable);
 

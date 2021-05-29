@@ -21,8 +21,5 @@ public class SecurityUser extends User {
 		//암호화 호에는 {noop} 지우기
 		super(user.getUsername(), "{noop}"+user.getPw(), AuthorityUtils.createAuthorityList(user.getRole()));
 		this.user = user;
-		
-		
 	}	
-	
 }

@@ -18,16 +18,18 @@
 		<h2>게시판 목록</h2>
 		<table class="board_list">
 			<colgroup>
-				<col width="15%" />
+				<col width="10%" />
 				<col width="*" />
-				<col width="15%" />
-				<col width="20%" />
+				<col width="5%" />
+				<col width="15%" />				
+				<col width="18%" />
 			</colgroup>
 			<thead>
 				<tr>
 					<th scope="col">글 번호</th>
 					<th scope="col">제목</th>
 					<th scope="col">조회수</th>
+					<th scope="col">작성자</th>
 					<th scope="col">작성일</th>
 				</tr>
 			</thead>
@@ -37,10 +39,11 @@
 					<td>
 						<!-- <a href="/board/boardDetail?boardIdx=" th:attrappend="href=${vo.boardIdx}" th:text="${vo.title}"></a>  -->
 						<a
-						th:href="@{/board/boardDetail/{boardIdx}(boardIdx=${vo.boardIdx})}"
+						th:href="@{/board/boardDetail/admin/{boardIdx}(boardIdx=${vo.boardIdx})}"
 						th:text="${vo.title}"></a>
 					</td>
 					<td th:text="${vo.hitCnt}"></td>
+					<td th:text="${vo.username}"></td>
 					<td th:text="${vo.createDatetime}"></td>
 				</tr>
 				<tr th:unless="${#lists.size(list)} > 0">
@@ -71,7 +74,7 @@
 		</nav>
 		<form class="d-flex justify-content-end">
 			<button type="button" class="btn btn-outline-primary">
-				<a href="/board/boardInsert" class="btn">글쓰기</a>
+				<a href="/board/boardInsert/admin" class="btn">글쓰기</a>
 			</button>
 		</form>
 		<form class="d-flex" method="GET" th:action="@{/board/boardList/admin}">

@@ -21,6 +21,7 @@ import kr.inhatc.spring.board.entity.Boards;
 import kr.inhatc.spring.board.entity.Files;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -42,7 +43,7 @@ public class Users {
 	private String email;
 	  
 	// date 추가
-	@Temporal(TemporalType.TIMESTAMP) // 데이터베이스에서 DATE 타입으로 주기
+	@Temporal(TemporalType.DATE) // 데이터베이스에서 DATE 타입으로 주기
 	// insertable(false) => 읽기전용 / updatable => 업데이트 가능여부 / columnDefinition => 컬럼 정의(sysdate로 준다)
 	@Column(insertable = false, updatable = false, columnDefinition = "date default sysdate") 
 	private Date joinDate;
