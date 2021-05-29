@@ -41,10 +41,7 @@ public class BoardController {
 	@Autowired
 	private BoardRepository boardRepository;
 
-//	@RequestMapping("/")
-//	public String hello() {
-//		return "index";
-//	}
+
 
 	// 글쓰기
 	@RequestMapping("/test/mainview")
