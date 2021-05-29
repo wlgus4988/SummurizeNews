@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- 타임리프 / 레이아웃 : default -->
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content">
+
+	<div class="container">
+		<h2>게시판 목록</h2>
+		<table class="board_list">
+			<colgroup>
+				<col width="15%" />
+				<col width="*" />
+				<col width="15%" />
+				<col width="20%" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">글 번호</th>
+					<th scope="col">제목</th>
+					<th scope="col">조회수</th>
+					<th scope="col">작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
+					<td th:text="${vo.boardIdx}"></td>
+					<td>
+						<!-- <a href="/board/boardDetail?boardIdx=" th:attrappend="href=${vo.boardIdx}" th:text="${vo.title}"></a>  -->
+						<a
+						th:href="@{/board/boardDetail/{boardIdx}(boardIdx=${vo.boardIdx})}"
+						th:text="${vo.title}"></a>
+					</td>
+					<td th:text="${vo.hitCnt}"></td>
+					<td th:text="${vo.createDatetime}"></td>
+				</tr>
+				<tr th:unless="${#lists.size(list)} > 0">
+					<td colspan="4">조회된 결과가 없습니다.</td>
+				</tr>
+			</tbody>
+		</table>
+		<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item"
+					th:classappend="${1 == list.pageable.pageNumber + 1} ? 'disabled'">
+					<a class="page-link" href="#"
+					th:href="@{/board/boardList/admin(page=${list.pageable.pageNumber - 1},searchText=${param.searchText})}"
+					tabindex="-1" aria-disabled="true">&lt;</a>
+				</li>
+				<li class="page-item"
+					th:classappend="${i == list.pageable.pageNumber + 1} ? 'disabled'"
+					th:each="i : ${#numbers.sequence(startPage, endPage)}"><a
+					class="page-link" href="#"
+					th:href="@{/board/boardList/admin(page=${i - 1}, searchText = ${param.searchText})}"
+					th:text="${i}">1</a></li>
+				<li class="page-item"
+					th:classappend="${list.totalPages == list.pageable.pageNumber + 1} ? 'disabled'">
+					<a class="page-link" href="#"
+					th:href="@{/board/boardList/admin(page=${list.pageable.pageNumber + 1}, searchText=${param.searchText})}">&gt;</a>
+				</li>
+			</ul>
+		</nav>
+		<form class="d-flex justify-content-end">
+			<button type="button" class="btn btn-outline-primary">
+				<a href="/board/boardInsert" class="btn">글쓰기</a>
+			</button>
+		</form>
+		 <form class="d-flex" method="GET" th:action="@{/board/boardList}">
+			<input class="form-control me-2" type="search" placeholder="Search"
+				id="searchText" name="searchText" aria-label="Search"
+				style="width: 230px" th:value="${param.searchText}">
+			<button class="btn btn-light me-2" type="submit">Search</button>
+		</form> 
+
+	</div>
+	</body>
+</html>

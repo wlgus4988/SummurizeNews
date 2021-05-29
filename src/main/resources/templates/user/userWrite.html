@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+
+<!-- index.html 고유 css 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content">
+
+	<div class="mt-2"></div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card">
+					<header class="card-header">
+						<h4 class="card-title mt-2">사용자 정보 등록</h4>
+					</header>
+					<article class="card-body">
+						<form id="frm" name="frm" action="/user/userInsert" method="post">
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-3 col-form-label">아
+									이 디</label>
+								<div class="col-sm-9">
+									<input name="username" type="text" class="form-control"
+										id="inputEmail3" placeholder="아이디를 입력하세요">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-3 col-form-label">패
+									스 워 드</label>
+								<div class="col-sm-9">
+									<input name="pw" type="password" class="form-control"
+										id="inputPassword3" placeholder="비밀번호를 입력하세요">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-3 col-form-label">이
+									름</label>
+								<div class="col-sm-9">
+									<input name="name" type="text" class="form-control"
+										id="inputEmail3" placeholder="이름을 입력하세요">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-3 col-form-label">이
+									메 일</label>
+								<div class="col-sm-9">
+									<input name="email" type="email" class="form-control"
+										id="inputEmail3" placeholder="Email을 입력하세요">
+								</div>
+							</div>
+							<!-- <fieldset class="form-group">
+								<div class="row">
+									<label for="inputPassword3" class="col-sm-3 col-form-label">사
+										용 여 부</label>
+									<div class="col-sm-9">
+										<th:block th:each="enabledName : ${map.enabledList}">
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="enabled"
+													th:value="${enabledName}"> <label
+													class="form-check-label" th:text="${enabledName}"></label>
+											</div>
+										</th:block>
+									</div>
+							</fieldset> -->
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-3 col-form-label">권
+									한</label>
+								<div class="col-sm-9">
+									<select name="role" id="inputState" class="form-control">
+										<th:block th:each="authorityName : ${map.authorityList}">
+											<option th:value="${authorityName}" th:text="${authorityName}">
+										</th:block>
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-6">
+									<button type="submit" class="btn btn-primary">회 원 가 입</button>
+								</div>
+							</div>
+						</form>
+					</article>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</html>

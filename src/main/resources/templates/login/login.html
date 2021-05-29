@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default2">
+
+<!-- index.html 고유 css 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content">
+	<div class="mt-2"></div>
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-6">
+				<div class="card">
+					<header class="card-header">
+						<h4 class="card-title mt-2">로 그 인</h4>
+					</header>
+					<article class="card-body">
+						<form method="post">
+							<div class="form-group row">
+								<label for="inputEmail3" class="col-sm-3 col-form-label">아
+									이 디</label>
+								<div class="col-sm-9">
+									<input type="text" name="username" class="form-control"
+										id="username" placeholder="아이디를 입력하세요">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="inputPassword3" class="col-sm-3 col-form-label">패
+									스 워 드</label>
+								<div class="col-sm-9">
+									<input type="password" name="password" class="form-control"
+										id="password" placeholder="비밀번호를 입력하세요">
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-sm-6">
+									<input type="submit" value="로그인" /> <input type="button"
+										onclick="location.href='/login/signUp'" value="회원가입" />
+
+								</div>
+							</div>
+						</form>
+					</article>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</html>

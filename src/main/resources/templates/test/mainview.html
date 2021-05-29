@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!-- 타임리프 / 레이아웃 : default -->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content">
+<head>
+<title>summariz3 - 세줄요약기</title>
+
+
+<link href="/static/images/favicon.292c367ce8b8.png" rel="shortcut icon"
+	type="image/png" />
+<link
+	href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
+	rel="stylesheet">
+<link
+	href="//cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
+	rel="stylesheet">
+<link href="//cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css"
+	rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+<![endif]-->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+
+
+
+
+<script>(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create", "UA-36051760-12", "auto");ga("send", "pageview");</script>
+
+
+
+</head>
+<body>
+
+	<div id="app">
+		<v-app> <v-main> <v-container id="container">
+		<div class="mt-5 mb-5">
+			<p>
+				<span class="text-h3 text-bold">신문 기사 요약</span>
+			</p>
+			<p class="brown--text">10자 이상, 10000자 이하, 50문장 이하의 텍스트를 넣어주세요.</p>
+		</div>
+		<form action="/test/mainview" method="post">
+			<input type="hidden" name="csrfmiddlewaretoken"
+				value="91U9v4bfopWesr5f7pReLJ2xEdBDXzP5Dx4EK6OjI1f2KNVEJ5LWBveGUyLYp5KB">
+			<input ref="content" type="hidden" value="" />
+			<div class="mb-3">
+				<v-textarea outlined hide-details name="content" label="요약하고 싶은 텍스트"
+					v-model="content" />
+			</div>
+			<div class="text-right mb-3">
+				<span class="grey--text mr-3">{( len )}자</span>
+				<v-btn outlined color="primary" type="submit" @click="submit">
+				요약하기 </v-btn>
+			</div>
+
+		</form>
+
+
+		<style>
+#container {
+	max-width: 640px;
+}
+</style>
+		<script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      delimiters: ['{(', ')}'],
+      data () {
+        return {
+          content: "",
+          loading: false
+        }
+      },
+      methods: {
+        submit () {
+          this.loading = true
+        }
+      },
+      computed: {
+        len () {
+          return this.content.length
+        }
+      },
+      mounted () {
+        this.content = this.$refs.content.value
+      }
+    })
+  </script> <script>(function(){var d=document,s=d.createElement('script');s.src='https://summariz3.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script>
+</body>
+</html>
