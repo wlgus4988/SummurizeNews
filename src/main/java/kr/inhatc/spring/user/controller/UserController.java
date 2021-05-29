@@ -45,6 +45,7 @@ public class UserController {
 	@RequestMapping("/")
 	public String hello() {
 		//log.debug("=========================>" + "여기 !"); // 디버그로 찍는거
+		System.out.println("=================>commit 테스트");
 		return "/login/login";
 	}
 	
