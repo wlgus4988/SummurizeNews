@@ -156,8 +156,8 @@ public class BoardController {
 			response.getOutputStream().flush(); // 버퍼에 있는거 밀어내기
 			response.getOutputStream().close();
 
-//			System.out.println("=====================> idx :" + idx);
-//			System.out.println("=====================> boardIdx :" + boardIdx);
+			System.out.println("=====================> idx :" + idx);
+			System.out.println("=====================> boardIdx :" + boardIdx);
 		}
 	}
 
