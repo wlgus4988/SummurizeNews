@@ -1,4 +1,4 @@
-ul.nav {
+/* ul.nav {
 	display: table;
 	width: 100%;
 }
@@ -6,7 +6,7 @@ ul.nav {
 font.ul {
 	cursor: pointer;
 	text-decoration: line-through;
-	/*color: #A8A8A8;*/
+	color: #A8A8A8;
 	text-decoration: none;
 	border-bottom: 1px solid #97BBF2;
 	display: inline-block;
@@ -30,7 +30,7 @@ a:link, a:active, a:visited {
 }
 
 span.correction {
-	/* color: #DE2E2E; */
+	color: #DE2E2E;
 	color: #919191;
 	position: absolute;
 	margin-top: -1.2em;
@@ -38,18 +38,18 @@ span.correction {
 }
 
 .blue .correction {
-/* 	color: #FF8900;
-	color: rgb(255, 137, 0); */
+	color: #FF8900;
+	color: rgb(255, 137, 0);
 	color: #919191;
 }
 
 .green .correction {
-	/* color: #DE2E2E; */
+	color: #DE2E2E;
 	color: #919191;
 }
 
 .Olive .correction {
-	/* color: #DE2E2E; */
+	color: #DE2E2E;
 	color: #919191;
 }
 
@@ -152,30 +152,30 @@ span.correction {
 
 .tdErrWord li:first-child a {
 	font-size: 1.2em;
-	/*color: #333 !important;*/
+	color: #333 !important;
 	font-weight: normal;
 }
 
 .tdReplace li a {
 	font-size: 1.2em;
 	font-weight: normal;
-/* 	color: #DE2E2E; */
+	color: #DE2E2E;
 	color: #000000;
 }
 
 .tdReplace.blue li a {
-/* 	color: #FF8900;
-	color: rgb(255, 137, 0); */
+	color: #FF8900;
+	color: rgb(255, 137, 0);
 	color: #000000;
 }
 
 .tdReplace.green li a {
-	/* color: #DE2E2E; */
+	color: #DE2E2E;
 	color: #000000;
 }
 
 .tdReplace.Olive li a {
-	/* color: #DE2E2E; */
+	color: #DE2E2E;
 	color: #000000;
 }
 
@@ -250,21 +250,21 @@ td {
 }
 
 input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder
-	{ /* WebKit browsers */
+	{ WebKit browsers
 	color: transparent;
 }
 
 input:focus:-moz-placeholder, textarea:focus:-moz-placeholder {
-	/* Mozilla Firefox 4 to 18 */
+	Mozilla Firefox 4 to 18
 	color: transparent;
 }
 
 input:focus::-moz-placeholder, textarea:focus::-moz-placeholder {
-	/* Mozilla Firefox 19+ */
+	Mozilla Firefox 19+
 	color: transparent;
 }
 
 input:focus:-ms-input-placeholder, textarea:focus:-ms-input-placeholder
-	{ /* Internet Explorer 10+ */
+	{ Internet Explorer 10+
 	color: transparent;
-}
+} */

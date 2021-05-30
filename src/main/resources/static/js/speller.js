@@ -1,4 +1,4 @@
-	var data; // json�곗씠��
+/*	var data; // json�곗씠��
 	var text; // �먮Ц
 	var pages;
 	var pageIdx;
@@ -1149,4 +1149,4 @@
 	    strHTML += "	</td></tr>";
 	    strHTML += "</table>";
 	    return strHTML;
-	}
+	}*/
