@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,18 +121,27 @@ public class UserController {
 
 	// GET(읽을때), POST(만들때), PUT(업데이트할때), DELETE(삭제할때) /@GetMapping 등등 붙여서 쓸수도 있음
 	// @GetMapping("/userList") // 위에 RequestMapping과 연결됨
-	@RequestMapping(value = "/user/userList", method = RequestMethod.GET)
-	public String userList(Model model, @PageableDefault(size = 2) org.springframework.data.domain.Pageable pageable,
-			@RequestParam(required = false, defaultValue = "") String searchText) {
-		Page<Users> list = userRepository.findByUsernameContainingOrNameContaining(searchText, searchText, pageable);
-
-		int startPage = Math.max(1, list.getPageable().getPageNumber() - 4);
-		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("list", list);
-		return "user/userList";
-	}
+//	@RequestMapping(value = "/user/userList", method = RequestMethod.GET)
+//	public String userList(Model model, @PageableDefault(size = 2) org.springframework.data.domain.Pageable pageable,
+//			@RequestParam(required = false, defaultValue = "") String searchText) {
+//		Page<Users> list = userRepository.findByUsernameContainingOrNameContaining(searchText, searchText, pageable);
+//
+//		int startPage = Math.max(1, list.getPageable().getPageNumber() - 4);
+//		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
+//		model.addAttribute("startPage", startPage);
+//		model.addAttribute("endPage", endPage);
+//		model.addAttribute("list", list);
+//		return "redirect:/user/userDetail/{username}";
+//	}
+//	@RequestMapping(value = "/user/userList", method = RequestMethod.GET)
+//	public String userList() {
+//		SecurityUser users = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//	    System.out.println("=================================>" + users.getUsername()); 
+//		username.set
+//	    Users user = userService.userDetail(username);
+//	    
+//		return "redirect:/user/userDetail/{username}";
+//	}
 
 	// @GetMapping("/userInsert") // 위에 RequestMapping과 연결됨
 	@RequestMapping(value = "/user/userInsert", method = RequestMethod.GET)
@@ -193,9 +204,16 @@ public class UserController {
 			// 뷰어 이동
 			return "redirect:/user/userList/admin";
 		}
-		
 
 	// = @GetMapping
+	@RequestMapping("/user/userDetail/") // userList.html에서 받아온 id값
+	public String userDetail(Model model) {
+		SecurityUser users = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("username", users.getUsername());
+		// 뷰어 이동
+		return "redirect:/user/userDetail/{username}";
+	}
+	
 	@RequestMapping(value = "/user/userDetail/{username}", method = RequestMethod.GET) // userList.html에서 받아온 id값
 	public String userDetail(@PathVariable("username") String username, Model model) {
 		Users user = userService.userDetail(username);
@@ -234,6 +252,7 @@ public class UserController {
 		userService.userDelete(username);
 		return "redirect:/user/userList";
 	}
+	
 	@RequestMapping(value = "/user/userDelete/admin/{username}", method = RequestMethod.GET)
 	public String userDelete_admin(@PathVariable("username") String username) {
 		userService.userDelete(username);
