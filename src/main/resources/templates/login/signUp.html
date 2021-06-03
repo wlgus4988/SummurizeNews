@@ -66,10 +66,10 @@
 		<div class="phpkida-main">
 			<h2>Register Now</h2>
 			<form action="/login/signUp" method="post" id="frm" name="frm">
-				<input type="text" class="ggg" name="username" id="inputEmail3"placeholder="아이디를 입력하세요" required="">
-				<input type="password" class="ggg"  name="pw" id="inputPassword3" placeholder="비밀번호를 입력하세요" required="">
-				<input type="text" class="ggg" name="name" id="inputEmail3"placeholder="PHONE" required="">
-				<input type="email" class="ggg" name="email" id="inputEmail3"placeholder="Email을 입력하세요" required="">
+				<input type="text" class="ggg" name="username" id="inputEmail3"placeholder="아이디 입력" required="">
+				<input type="password" class="ggg"  name="pw" id="inputPassword3" placeholder="비밀번호 입력" required="">
+				<input type="text" class="ggg" name="name" id="inputEmail3"placeholder="이름 입력" required="">
+				<input type="email" class="ggg" name="email" id="inputEmail3"placeholder="Email 입력" required="">
 				<label for="inputEmail3">권한</label>
 				<select name="role" id="inputState" class="ggg">
 					<th:block th:each="authorityName : ${map.authorityList}">

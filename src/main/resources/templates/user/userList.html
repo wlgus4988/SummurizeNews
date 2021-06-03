@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <!-- 타임리프 / 레이아웃 : default -->
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
 
 <!-- index.html 고유 CSS 추가 -->
-<th:block layout:fragment="css">
-</th:block>
+<link href="/css/styles.css" rel="stylesheet" />
 
 <!-- index.html 고유 스크립트 추가 -->
-<th:block layout:fragment="script">
-</th:block>
+<script src="/js/scripts.js"></script>
 
-<div layout:fragment="content">
+<div layout:fragment="content" style="padding: 120px 1px 2px 3px;">
 
-   <div class="container">
+	<div class="container">
 		<h2>사용자 리스트 목록</h2>
 
 		<table class="table table-hover">
@@ -29,14 +27,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
-					
-<!-- 					<td>
+				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}" style="text-align:center;">
+
+					<!-- 					<td>
 					<img id ="img" alt="" src="">
 					</td> -->
-					<td>
-						<a th:href="@{/user/userDetail/{username}(username=${vo.username})}" th:text="${vo.username}"></a>
-					  <!-- <a th:href="@{/user/userDetail/(id=${vo.id})"></a>  -->
+					<td><a
+						th:href="@{/user/userDetail/{username}(username=${vo.username})}"
+						th:text="${vo.username}"></a> <!-- <a th:href="@{/user/userDetail/(id=${vo.id})"></a>  -->
 					</td>
 
 					<td th:text="${vo.pw}"></td>
@@ -52,37 +50,37 @@
 		</table>
 		<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
-			 <li class="page-item" th:classappend="${1 == list.pageable.pageNumber + 1} ? 'disabled'">
-                    <a class="page-link" href="#"
-                        th:href="@{/user/userList(page=${list.pageable.pageNumber - 1},searchText=${param.searchText})}"
-                        tabindex="-1" aria-disabled="true">&lt;</a>
-                </li>
-				<li class="page-item" 
-				th:classappend="${i == list.pageable.pageNumber + 1} ? 'disabled'"
-				th:each="i : ${#numbers.sequence(startPage, endPage)}">
-				<a class="page-link" href="#" 
-				th:href="@{/user/userList(page=${i - 1}, searchText = ${param.searchText})}"
-				th:text="${i}">1</a></li>
-				<li class="page-item" 
-				th:classappend="${list.totalPages == list.pageable.pageNumber + 1} ? 'disabled'">
-				<a class="page-link" href="#" 
-				th:href="@{/user/userList(page=${list.pageable.pageNumber + 1}, searchText=${param.searchText})}">&gt;</a></li>
+				<li class="page-item"
+					th:classappend="${1 == list.pageable.pageNumber + 1} ? 'disabled'">
+					<a class="page-link" href="#"
+					th:href="@{/user/userList(page=${list.pageable.pageNumber - 1},searchText=${param.searchText})}"
+					tabindex="-1" aria-disabled="true">&lt;</a>
+				</li>
+				<li class="page-item"
+					th:classappend="${i == list.pageable.pageNumber + 1} ? 'disabled'"
+					th:each="i : ${#numbers.sequence(startPage, endPage)}"><a
+					class="page-link" href="#"
+					th:href="@{/user/userList(page=${i - 1}, searchText = ${param.searchText})}"
+					th:text="${i}">1</a></li>
+				<li class="page-item"
+					th:classappend="${list.totalPages == list.pageable.pageNumber + 1} ? 'disabled'">
+					<a class="page-link" href="#"
+					th:href="@{/user/userList(page=${list.pageable.pageNumber + 1}, searchText=${param.searchText})}">&gt;</a>
+				</li>
 			</ul>
 		</nav>
 		<form class="d-flex justify-content-end">
-		<button type="button" class="btn btn-outline-primary" >
-			<a href="/user/userInsert">사용자 추가</a>
-		</button>
+			<button type="button" class="btn btn-outline-primary">
+				<a href="/user/userInsert">사용자 추가</a>
+			</button>
 		</form>
-			 <form class="d-flex" method="GET" th:action="@{/user/userList}">
-					<input class="form-control me-2" type="search" placeholder="Search"
-						id="searchText" name="searchText" aria-label="Search" style="width: 230px"
-						th:value="${param.searchText}">
+		<form class="d-flex" method="GET" th:action="@{/user/userList}">
+			<input class="form-control me-2" type="search" placeholder="Search"
+				id="searchText" name="searchText" aria-label="Search"
+				style="width: 230px" th:value="${param.searchText}">
 
-					<button class="btn btn-light me-2" type="submit">Search</button>
-					<form class="form-inline d-flex justify-content-end"></form>
-		
-
+			<button class="btn btn-light me-2" type="submit">Search</button>
+			<form class="form-inline d-flex justify-content-end"></form>
 	</div>
 
 </div>

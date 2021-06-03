@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <!-- 타임리프 / 레이아웃 : default -->
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
 
 <!-- index.html 고유 CSS 추가 -->
-<th:block layout:fragment="css">
-</th:block>
+<link href="/css/styles.css" rel="stylesheet" />
+
 
 <!-- index.html 고유 스크립트 추가 -->
-<th:block layout:fragment="script">
-</th:block>
+<script src="/js/scripts.js"></script>
 
 <div layout:fragment="content">
-<head>
+	<head>
 <title>summariz3 - 세줄요약기</title>
 
 
 <link href="/static/images/favicon.292c367ce8b8.png" rel="shortcut icon"
 	type="image/png" />
-<link
+<!-- <link
 	href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900"
-	rel="stylesheet">
+	rel="stylesheet"> -->
 <link
 	href="//cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css"
 	rel="stylesheet">
@@ -41,40 +40,40 @@
 
 
 
-</head>
-<body>
+	</head>
+	<body>
 
-	<div id="app">
-		<v-app> <v-main> <v-container id="container">
-		<div class="mt-5 mb-5">
-			<p>
-				<span class="text-h3 text-bold">신문 기사 요약</span>
-			</p>
-			<p class="brown--text">10자 이상, 10000자 이하, 50문장 이하의 텍스트를 넣어주세요.</p>
-		</div>
-		<form action="/test/mainview" method="post">
-			<input type="hidden" name="csrfmiddlewaretoken"
-				value="91U9v4bfopWesr5f7pReLJ2xEdBDXzP5Dx4EK6OjI1f2KNVEJ5LWBveGUyLYp5KB">
-			<input ref="content" type="hidden" value="" />
-			<div class="mb-3">
-				<v-textarea outlined hide-details name="content" label="요약하고 싶은 텍스트"
-					v-model="content" />
+		<div id="app" style="padding: 120px 1px 2px 3px;">
+			<v-app> <v-main> <v-container id="container">
+			<div class="mt-5 mb-5">
+				<p>
+					<span class="text-h3 text-bold">신문 기사 요약</span>
+				</p>
+				<p class="brown--text">10자 이상, 10000자 이하, 50문장 이하의 텍스트를 넣어주세요.</p>
 			</div>
-			<div class="text-right mb-3">
-				<span class="grey--text mr-3">{( len )}자</span>
-				<v-btn outlined color="primary" type="submit" @click="submit">
-				요약하기 </v-btn>
-			</div>
+			<form action="/test/mainview" method="post">
+				<input type="hidden" name="csrfmiddlewaretoken"
+					value="91U9v4bfopWesr5f7pReLJ2xEdBDXzP5Dx4EK6OjI1f2KNVEJ5LWBveGUyLYp5KB">
+				<input ref="content" type="hidden" value="" />
+				<div class="mb-3">
+					<v-textarea outlined hide-details name="content"
+						label="요약하고 싶은 텍스트" v-model="content" />
+				</div>
+				<div class="text-right mb-3">
+					<span class="grey--text mr-3">{( len )}자</span>
+					<v-btn outlined color="primary" type="submit" @click="submit">
+					요약하기 </v-btn>
+				</div>
 
-		</form>
+			</form>
 
 
-		<style>
+			<style>
 #container {
 	max-width: 640px;
 }
 </style>
-		<script>
+			<script>
     new Vue({
       el: '#app',
       vuetify: new Vuetify(),
@@ -100,5 +99,5 @@
       }
     })
   </script> <script>(function(){var d=document,s=d.createElement('script');s.src='https://summariz3.disqus.com/embed.js';s.setAttribute('data-timestamp',+new Date());(d.head||d.body).appendChild(s);})();</script>
-</body>
+	</body>
 </html>

@@ -1,19 +1,198 @@
 <!DOCTYPE html>
 <!-- 타임리프 / 레이아웃 : default -->
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<title>개발자 소개</title>
 
-<!-- index.html 고유 CSS 추가 -->
-<th:block layout:fragment="css">
-</th:block>
+<meta charset="utf-8">
+<meta name="description" content="">
+<meta name="author" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- index.html 고유 스크립트 추가 -->
-<th:block layout:fragment="script">
-</th:block>
 
-<div layout:fragment="content">
+<!-- Boostrap Core CSS-->
+<link rel="stylesheet" href="/css/bootstrap.min.css">
 
-<h1>도 움 말</h1>
+<!-- Main CSS -->
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- Gallery -->
+<link rel="stylesheet" href="/css/touchTouch.css">
+
+<!-- Animate CSS -->
+<link href="/css/animate.css" rel="stylesheet">
+
+<!-- Google fonts -->
+<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css"
+	href="http://fonts.googleapis.com/css?family=Qwigley">
+<!-- Font awesome -->
+<link href="font-awesome-4.1.0/css/font-awesome.min.css"
+	rel="stylesheet" type="text/css">
+
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
+	crossorigin="anonymous"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+	rel="stylesheet" type="text/css" />
+
+<link href="/css/styles.css" rel="stylesheet" />
+
+</head>
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"
+	th:fragment="menuFragment">
+	<div class="container">
+		<a class="navbar-brand" href="#page-top">User Page</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			Menu <i class="fas fa-bars ms-1"></i>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarResponsive">
+			<ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+				<li class="nav-item"><a class="nav-link active"
+					aria-current="page" href="/login/loginSuccess">Home</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/board/boardList">전체 게시판 </a></li>
+				<li class="nav-item"><a class="nav-link" href="/test/mainview">요약
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="/user/test">맞춤법
+						검사 </a></li>
+				<li class="nav-item"><a class="nav-link" href="/user/userList">마이페이지
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="/user/test2">개발자
+						소개</a></li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<button class="btn btn-outline-danger btn-sm" type="button">
+					<a th:href="@{/login/logout}" class="text-white">로 그 아 웃</a>
+				</button>
+			</form>
+
+		</div>
+	</div>
+</nav>
+
+<div layout:fragment="content" style="padding: 100px 0px 0px 3px;">
+	<!-- Start wrapper -->
+	<div class="wrapper">
+
+		<div class="col-md-12">
+
+
+			<!-- Start projects -->
+			<div class="container">
+
+				<!--/#portfolio-filter-->
+
+				<div class="row">
+					<div class="portfolio-items grid">
+						<div
+							class="portfolio-item summer col-xs-12 col-sm-12 col-md-4 thumbs">
+							<figure class="effect-moses wow fadeIn" data-wow-delay="0.1s">
+								<a href="../assets/img/image2.jpg"> <img
+									src="../assets/img/image2.jpg" alt="" />
+									<figcaption>
+										<h2>PHOTO1</h2>
+										<p>The human head is a constantly moving and turning
+											pedestal with the hat a sculpture.</p>
+									</figcaption>
+								</a>
+							</figure>
+						</div>
+						<!-- /portfolio-item -->
+
+						<div
+							class="portfolio-item autumn col-xs-12 col-sm-12 col-md-4 thumbs">
+							<figure class="effect-moses wow fadeIn">
+								<a href="../assets/img/image2.jpg"> <img
+									src="../assets/img/image2.jpg" alt="" />
+									<figcaption>
+										<h2>PHOTO2</h2>
+										<p>The human head is a constantly moving and turning
+											pedestal with the hat a sculpture.</p>
+									</figcaption>
+								</a>
+							</figure>
+						</div>
+						<!-- /portfolio-item -->
+
+						<div
+							class="portfolio-item spring col-xs-12 col-sm-12 col-md-4 thumbs">
+							<figure class="effect-moses wow fadeIn">
+								<a href="../assets/img/image2.jpg"> <img
+									src="../assets/img/image2.jpg" alt="" />
+									<figcaption>
+										<h2>PHOTO3</h2>
+										<p>The human head is a constantly moving and turning
+											pedestal with the hat a sculpture.</p>
+									</figcaption>
+								</a>
+							</figure>
+						</div>
+						<!-- /portfolio-item -->
+					</div>
+					<!-- /portfolio-items -->
+				</div>
+				<!-- /row -->
+
+			</div>
+			<!-- /container -->
+
+		</div>
+		<!-- End margin -->
+
+		<!-- Start footer -->
+		<!-- <div class="footer col-md-6 col-xs-offset-3">
+				<h5>
+					Copyright 2016 <a href="#"><i
+						class="fa fa-facebook fa-1x icon1"></i></a> <a href="#"><i
+						class="fa fa-twitter fa-1x icon1"></i></a> <a href="#"><i
+						class="fa fa-instagram fa-1x icon1"></i></a>
+				</h5>
+			</div>
+			End footer -->
+
+
+	</div>
+	<!-- End col-md-12 -->
+
 </div>
+</div>
+<!-- End wrapper -->
+
+
+<!-- jQuery Version 1.11.0 -->
+<script src="/js/jquery-1.11.0.js"></script>
+<!-- Boostrap JS -->
+<script src="/js/bootstrap.min.js"></script>
+<!-- Isotope JS -->
+<script src="/js/jquery.isotope.min.js"></script>
+<!-- Main JS -->
+<script src="/js/main.js"></script>
+<!-- WOW JS -->
+<script src="/js/wow.min.js"></script>
+<!-- Gallery JavaScript -->
+<script src="/js/touchTouch.jquery.js"></script>
+<script src="/js/script.js"></script>
+
+<!-- Smooth scroll JS -->
+<script src="/js/smoothscroll.js"></script>
+
+<!-- Wow JavaScript -->
+<script src="/js/wow.js"></script>
+
+<script>
+	new WOW().init();
+</script>
 </html>
