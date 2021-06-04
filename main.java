@@ -29,18 +29,31 @@ public class main {
 		// String message= " ";
 		String command = "python test.py" + " " + message;
 
+		// String command2 = "C:\\Users\\wls40\\Downloads\\textrank-master\\a.py";
+		// String command = "cmd /c python test.py";
+
 		Process child = Runtime.getRuntime().exec(command);
 
+		//String str = "";
 
 		InputStreamReader in = new InputStreamReader(child.getInputStream(), "MS949");
 		int c = 0;
 
 		while ((c = in.read()) != -1) {
 
+//			ArrayList<Character> arrays = new ArrayList<Character>();
+//			arrays.add((char) c);
+
+//			for (Character array : arrays) {
+//				str += array;
+//			}
 			System.out.print((char) c);
 		}
-		
+
+		//System.out.print(str);
+
 		in.close();
+
 	}
 
 }

@@ -114,35 +114,6 @@ public class UserController {
 		return "/user/test";
 	}
 
-	@RequestMapping("/user/test2")
-	public String Help() {
-		return "/user/test2";
-	}
-
-	// GET(읽을때), POST(만들때), PUT(업데이트할때), DELETE(삭제할때) /@GetMapping 등등 붙여서 쓸수도 있음
-	// @GetMapping("/userList") // 위에 RequestMapping과 연결됨
-//	@RequestMapping(value = "/user/userList", method = RequestMethod.GET)
-//	public String userList(Model model, @PageableDefault(size = 2) org.springframework.data.domain.Pageable pageable,
-//			@RequestParam(required = false, defaultValue = "") String searchText) {
-//		Page<Users> list = userRepository.findByUsernameContainingOrNameContaining(searchText, searchText, pageable);
-//
-//		int startPage = Math.max(1, list.getPageable().getPageNumber() - 4);
-//		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
-//		model.addAttribute("startPage", startPage);
-//		model.addAttribute("endPage", endPage);
-//		model.addAttribute("list", list);
-//		return "redirect:/user/userDetail/{username}";
-//	}
-//	@RequestMapping(value = "/user/userList", method = RequestMethod.GET)
-//	public String userList() {
-//		SecurityUser users = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//	    System.out.println("=================================>" + users.getUsername()); 
-//		username.set
-//	    Users user = userService.userDetail(username);
-//	    
-//		return "redirect:/user/userDetail/{username}";
-//	}
-
 	// @GetMapping("/userInsert") // 위에 RequestMapping과 연결됨
 	@RequestMapping(value = "/user/userInsert", method = RequestMethod.GET)
 	public String userWrite(Model model) {

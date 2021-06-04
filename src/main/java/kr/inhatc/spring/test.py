@@ -29,6 +29,6 @@ summarizer = KeysentenceSummarizer(
     min_sim = 0.3,
     verbose = False
 )
-keysents = summarizer.summarize(sts, topk=3)
+keysents = summarizer.summarize(sts, topk=2)
 for _, _, sent in keysents:
     print(sent)

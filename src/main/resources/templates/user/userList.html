@@ -38,13 +38,9 @@
 			</thead>
 			<tbody>
 				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
-					
-<!-- 					<td>
-					<img id ="img" alt="" src="">
-					</td> -->
+
 					<td>
 						<a th:href="@{/user/userDetail/{username}(username=${vo.username})}" th:text="${vo.username}"></a>
-					  <!-- <a th:href="@{/user/userDetail/(id=${vo.id})"></a>  -->
 					</td>
 
 					<td th:text="${vo.pw}"></td>

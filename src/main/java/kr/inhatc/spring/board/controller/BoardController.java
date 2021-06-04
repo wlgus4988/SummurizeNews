@@ -45,11 +45,11 @@ public class BoardController {
 	@Autowired
 	private BoardRepository boardRepository;
 
-	@RequestMapping(value = "/test/mainview", method = RequestMethod.GET)
+	@RequestMapping(value = "/test/mainview", method = {RequestMethod.GET, RequestMethod.POST})
 	public String testPage(HttpServletRequest req, Model model) throws IOException {
 
-		String content = req.getParameter("contents");
-		System.out.println("========================>" + content);
+		String content = req.getParameter("content");
+		//System.out.println("========================>" + content);
 
 		String command = "python test.py" + " " + content;
 
@@ -80,6 +80,15 @@ public class BoardController {
 
 		
 		return "/test/mainview";
+	}
+	
+	@RequestMapping(value="/test/textview", method = {RequestMethod.GET, RequestMethod.POST})
+	public String Help() {
+		
+		
+		
+		
+		return "/test/textview";
 	}
 
 
