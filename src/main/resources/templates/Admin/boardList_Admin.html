@@ -5,18 +5,17 @@
 	layout:decorator="layout/default_Admin">
 
 <!-- index.html 고유 CSS 추가 -->
-<th:block layout:fragment="css">
-</th:block>
+<link href="/css/styles.css" rel="stylesheet" />
 
 <!-- index.html 고유 스크립트 추가 -->
 <th:block layout:fragment="script">
 </th:block>
 
-<div layout:fragment="content">
+<div layout:fragment="content" style="padding: 100px 1px 2px 3px;">
 
 	<div class="container">
 		<h2>게시판 목록</h2>
-		<table class="board_list">
+		<table class="board_list" style="padding: 10px 10px 10px 10px;">
 			<colgroup>
 				<col width="15%" />
 				<col width="*" />
@@ -32,7 +31,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
+				<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}" style="text-align:center;">
 					<td th:text="${vo.boardIdx}"></td>
 					<td>
 						<!-- <a href="/board/boardDetail?boardIdx=" th:attrappend="href=${vo.boardIdx}" th:text="${vo.title}"></a>  -->
@@ -74,12 +73,14 @@
 				<a href="/board/boardInsert" class="btn">글쓰기</a>
 			</button>
 		</form>
-		<form class="d-flex" method="GET" th:action="@{/board/boardList/admin}">
+		<form class="d-flex" method="GET"
+			th:action="@{/board/boardList/admin}">
 			<input class="form-control me-2" type="search" placeholder="Search"
 				id="searchText" name="searchText" aria-label="Search"
 				style="width: 230px" th:value="${param.searchText}">
 			<button class="btn btn-light me-2" type="submit">Search</button>
 		</form>
 	</div>
-	</body>
+</div>
+</body>
 </html>
