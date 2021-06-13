@@ -25,7 +25,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity // 데이블을 만드는 엔티티 객체 생성
-@Table(name = "PRO_BOARD") 
+@Table(name = "PRO_BOARD")
 @NoArgsConstructor // 디폴트 생성자
 @AllArgsConstructor // 전체 컬럼 생성자
 @Data // get, set
@@ -34,8 +34,10 @@ public class Boards {
 
 	@Id
 	@Column(name = "BOARD_IDX")
+	// Auto시퀀스 방식
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int boardIdx;
+	
 	private String title;
 	private String contents;
 	private int hitCnt;
@@ -46,9 +48,9 @@ public class Boards {
 	private Date createDatetime;
 	// private char deleteYN;
 
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="boardIdx")
-	@ElementCollection
-	private Collection<Files> fileList;
+//	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//	@JoinColumn(name = "boardIdx")
+//	@ElementCollection
+//	private Collection<Files> fileList;
 
 }

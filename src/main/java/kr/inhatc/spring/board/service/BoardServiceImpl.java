@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -15,7 +17,7 @@ import org.thymeleaf.standard.expression.Each;
 
 
 import kr.inhatc.spring.board.entity.Boards;
-import kr.inhatc.spring.board.entity.Files;
+//import kr.inhatc.spring.board.entity.Files;
 import kr.inhatc.spring.board.repository.BoardRepository;
 import kr.inhatc.spring.user.entity.Users;
 import kr.inhatc.spring.user.repository.UserRepository;
@@ -30,9 +32,6 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardRepository boardRepository;
 	
-	@Autowired
-	private FileUtils fileUtils;
-
 	@Override
 	public List<Boards> boardList() {
 		List<Boards> list = boardRepository.findAllByOrderByBoardIdxDesc();
@@ -40,7 +39,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void saveBoards(Boards board, MultipartHttpServletRequest multipartHttpServletRequest, int hitCnt) {
+	public void saveBoards(Boards board, int hitCnt) {
 		
 		SecurityUser user = (SecurityUser)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		//System.out.println("username ==============>" + user.getUsername());
@@ -49,10 +48,10 @@ public class BoardServiceImpl implements BoardService {
 		board.setHitCnt(hitCnt);
 		
 		
-		List<Files> list = fileUtils.parseFileInfo( multipartHttpServletRequest);
-		if(CollectionUtils.isEmpty(list)==false){
-			board.setFileList(list);
-		}
+//		List<FileDto> list = fileUtils.parseFileInfo( multipartHttpServletRequest);
+//		if(CollectionUtils.isEmpty(list)==false){
+//			board.setFileList(list);
+//		}
 
 		boardRepository.save(board);
 	}
@@ -125,10 +124,18 @@ public class BoardServiceImpl implements BoardService {
 //		boardRepository.deleteBoardFile(idx, boardIdx);
 //	}
 
+//	@Override
+//	public FileDto selectFileInfo(int idx, int boardIdx) {
+//		FileDto boardFile = boardRepository.selectFileInfo(idx, boardIdx);
+//		return boardFile;
+//	}
+	
 	@Override
-	public Files selectFileInfo(int idx, int boardIdx) {
-		Files boardFile = boardRepository.selectFileInfo(idx, boardIdx);
-		return boardFile;
+	public Page<Boards> boardjpaPageList(String searchText, Pageable pageable) {
+		Page<Boards> list = boardRepository.findByUsernameContainingOrTitleContaining(searchText, searchText, pageable);
+		System.out.println("real : " + list);
+		return list;
+//		return null;
 	}
 
 }

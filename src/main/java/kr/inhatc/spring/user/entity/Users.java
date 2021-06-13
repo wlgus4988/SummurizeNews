@@ -2,6 +2,7 @@ package kr.inhatc.spring.user.entity;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,7 +19,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import kr.inhatc.spring.board.entity.Boards;
-import kr.inhatc.spring.board.entity.Files;
+//import kr.inhatc.spring.board.entity.Files;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Builder.Default;
@@ -53,6 +54,6 @@ public class Users {
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	@JoinColumn(name="username")
 	@ElementCollection
-	private Collection<Boards> boardList;
+	private List<FileDto> fileList;
 
 }

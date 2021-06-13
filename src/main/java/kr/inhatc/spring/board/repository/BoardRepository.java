@@ -14,7 +14,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import kr.inhatc.spring.board.entity.Boards;
-import kr.inhatc.spring.board.entity.Files;
+//import kr.inhatc.spring.board.entity.Files;
 import kr.inhatc.spring.user.entity.Users;
 
 @Repository
@@ -22,11 +22,13 @@ public interface BoardRepository extends CrudRepository<Boards, Integer> {
 
 	List<Boards> findAllByOrderByBoardIdxDesc();
 	
-	@Query("SELECT file FROM Files file WHERE board_idx = :boardIdx AND idx = :idx")
-	Files selectFileInfo(@Param("idx") int idx, @Param("boardIdx") int boardIdx);
+//	@Query("SELECT file FROM Files file WHERE board_idx = :boardIdx AND idx = :idx")
+//	Files selectFileInfo(@Param("idx") int idx, @Param("boardIdx") int boardIdx);
 
 	Page<Boards> findByUsernameContainingOrTitleContaining(String searchText, String searchText2, Pageable pageable);
-
+	
+	Page<Boards> findByBoardIdx(Integer boardIdx, String string, Pageable pageable);
+	
 //	Page<Boards> findByPage(Pageable pageable);
 
 }

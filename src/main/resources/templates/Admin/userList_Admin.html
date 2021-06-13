@@ -5,19 +5,18 @@
       layout:decorator="layout/default_Admin">
 
 <!-- index.html 고유 CSS 추가 -->
-<th:block layout:fragment="css">
-</th:block>
+<link href="/css/styles.css" rel="stylesheet" />
 
 <!-- index.html 고유 스크립트 추가 -->
 <th:block layout:fragment="script">
 </th:block>
 
-<div layout:fragment="content">
+<div layout:fragment="content" style="padding: 100px 1px 2px 3px;">
 
    <div class="container">
 		<h2>사용자 리스트</h2>
 
-		<table class="board_list">
+		<table class="table table-hover">
 		<colgroup>
 				<col width="14%" />
 				<col width="14%" />

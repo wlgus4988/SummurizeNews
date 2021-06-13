@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 public class Main_ocr {
 	public static void main(String[] args) throws IOException {
 		
-		String message = "C:/Users/USER/Capston/SummurizeNews/src/main/resources/test.jpg";
-		String command = "python image_test.py" + " " + message +" "+"stdout -l kor";
+		String message = "C:/Users/USER/Capston/SummurizeNews/src/main/resources/static"+"/images/20210613/880215698678800.jpg";
+		String command = "python image_test.py" + " " + message +" ";
 
 		Process child = Runtime.getRuntime().exec(command);
 

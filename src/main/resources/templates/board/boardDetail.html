@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>게시판 상세</title>
-<link rel="stylesheet" th:href="@{/style.css}"></link>
-</head>
-<body>
+<!-- 타임리프 / 레이아웃 : default -->
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<link href="/css/styles.css" rel="stylesheet" />
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content" style="padding: 100px 1px 2px 3px;">
+
 	<div class="container">
 		<h2>게시판 상세</h2>
 <!-- 
 		 <form id="frm" name="frm" th:method="POST"> --> <!-- th:action="'/board/boardUpdate/' + ${board.boardIdx}" -->
 		 <form role="form" th:method="POST" th:action="'/board/boardUpdate/' + ${board.boardIdx}">
-			<table class="board_detail">
+			<table class="board_detail" style="padding: 10px 10px 10px 10px;">
 				<colgroup>
 					<col width="15%" />
 					<col width="35%" />
@@ -55,43 +62,14 @@
 	<!-- 		<input type="hidden" name="boardIdx" th:value="${board.boardIdx}"> -->
 		</form>
 		
-		<div class="file_list">
+		<!-- <div class="file_list">
 		<a th:each="file : ${board.fileList}"    // 문자열과 섞이면 안된다
 		th:href="@{/board/downloadBoardFile(idx=${file.idx}, boardIdx=${file.boardIdx})}"
-		th:text="|${file.originalFileName} (${file.fileSize}kb)|"> </a> 
-<!-- 		<form th:method="delete" th:action="@{/board/downloadBoardFile(idx=${list.idx}, boardIdx=${board.boardIdx})}">
-			<input type="submit" id="delete_file" th:value="파일삭제">
-		</form>
-		</div> -->
-		
-	<!-- 	<input type="button" id="list" value="목록으로" class="btn"> 
-		<input type="button" id="edit" value="수정하기" class="btn">  
-	    <input type="button" id="delete" value="삭제하기" class="btn"> -->
+		th:text="|${file.originalFileName} (${file.fileSize}kb)|"> </a>  -->
+
 	
 	</div>
-<!-- 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-	
-	<script type="text/javascript">
-		$(document).ready(function(){
-			var boardIdx=$("#boardIdx").val();
-			
-			$("#list").on("click", function() {
-				location.href = "/board/boardList"
-			});
-			
- 			$("#edit").on("click", function(){
- 				$("#method").val("put");
-				var frm = $("#frm")[0];
-				frm.action = "/board/boardUpdate"+boardIdx;
-				frm.submit()
-			}); 
- 			$("#delete").on("click", function(){
- 				$("#method").val("delete");
-				var frm = $("#frm")[0];
-				frm.action = "/board/boardDelete"+boardIdx;
-				frm.submit()
-			});
-		});
-	</script> -->
+</div>
+</div>
 </body>
 </html>

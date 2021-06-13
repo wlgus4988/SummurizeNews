@@ -19,9 +19,10 @@ public interface UserRepository extends JpaRepository<Users, String>{ //CrudRepo
 
 	List<Users> findAllByOrderByUsernameDesc();
 
-	
-
 	Page<Users> findByUsernameContainingOrNameContaining(String searchText, String searchText2, Pageable pageable);
+
+	//void save(String username);
+
 
 
 }

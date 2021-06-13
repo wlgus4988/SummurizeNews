@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
@@ -27,9 +28,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.inhatc.spring.board.entity.Boards;
-import kr.inhatc.spring.board.entity.Files;
+//import kr.inhatc.spring.board.entity.Files;
 import kr.inhatc.spring.board.repository.BoardRepository;
 import kr.inhatc.spring.board.service.BoardService;
+import kr.inhatc.spring.login.security.SecurityUser;
 import kr.inhatc.spring.user.repository.UserRepository;
 
 //@RestController 결과물을 바로 받아옴
@@ -48,13 +50,12 @@ public class BoardController {
 	@RequestMapping(value = "/test/mainview", method = {RequestMethod.GET, RequestMethod.POST})
 	public String testPage(HttpServletRequest req, Model model) throws IOException {
 
+		SecurityUser user = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("username", user.getUsername());
+		
 		String content = req.getParameter("content");
-		//System.out.println("========================>" + content);
 
 		String command = "python test.py" + " " + content;
-
-		// String command2 = "C:\\Users\\wls40\\Downloads\\textrank-master\\a.py";
-		// String command = "cmd /c python test.py";
 
 		Process child = Runtime.getRuntime().exec(command);
 
@@ -71,25 +72,16 @@ public class BoardController {
 			for (Character array : arrays) {
 				str += array;
 			}
-			//model.addAttribute("str", str);
 		}
 		
 		model.addAttribute("result", str);
 
 		in.close();
-
+		
 		
 		return "/test/mainview";
 	}
 	
-	@RequestMapping(value="/test/textview", method = {RequestMethod.GET, RequestMethod.POST})
-	public String Help() {
-		
-		
-		
-		
-		return "/test/textview";
-	}
 
 
 	@RequestMapping(value = "/board/boardList/admin", method = RequestMethod.GET)
@@ -113,7 +105,10 @@ public class BoardController {
 			@RequestParam(required = false, defaultValue = "") String searchText) {
 		// 서비스 로직
 		Page<Boards> list = boardRepository.findByUsernameContainingOrTitleContaining(searchText, searchText, pageable);
-
+		
+		SecurityUser user = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("username", user.getUsername());
+		
 		int startPage = Math.max(1, list.getPageable().getPageNumber() - 4);
 		int endPage = Math.min(list.getTotalPages(), list.getPageable().getPageNumber() + 4);
 		model.addAttribute("startPage", startPage);
@@ -125,17 +120,23 @@ public class BoardController {
 
 	// 글쓰기
 	@RequestMapping(value = "/board/boardInsert", method = RequestMethod.GET)
-	public String boardWrite() {
+	public String boardWrite(Model model) {
+		
+		SecurityUser user = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("username", user.getUsername());
 		// 뷰어 이동
 		return "/board/boardWrite";
 	}
 
 	// 글쓰기 다음 저장
 	@RequestMapping(value = "/board/boardInsert", method = RequestMethod.POST)
-	public String boardInsert(Boards board, MultipartHttpServletRequest multipartHttpServletRequest) {
+	public String boardInsert(Boards board,Model model) {
 		int hitCnt = board.getHitCnt();
-
-		boardService.saveBoards(board, multipartHttpServletRequest, hitCnt);
+		
+		SecurityUser user = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("username", user.getUsername());
+		
+		boardService.saveBoards(board, hitCnt);
 		// 게시판으로 다시 이동
 		return "redirect:/board/boardList"; // redirect : controller의 boardList를 다시 호풀하는 것
 	}
@@ -149,10 +150,10 @@ public class BoardController {
 
 	// 글쓰기 다음 저장
 	@RequestMapping(value = "/board/boardInsert/admin", method = RequestMethod.POST)
-	public String boardInsert_admin(Boards board, MultipartHttpServletRequest multipartHttpServletRequest) {
+	public String boardInsert_admin(Boards board) {
 		int hitCnt = board.getHitCnt();
 
-		boardService.saveBoards(board, multipartHttpServletRequest, hitCnt);
+		boardService.saveBoards(board, hitCnt);
 		// 게시판으로 다시 이동
 		return "redirect:/board/boardList/admin"; // redirect : controller의 boardList를 다시 호풀하는 것
 	}
@@ -161,6 +162,8 @@ public class BoardController {
 	@RequestMapping(value = "/board/boardDetail/{boardIdx}", method = RequestMethod.GET)
 	public String boardDetail(@PathVariable("boardIdx") int boardIdx, Model model) {
 		// 상세정보 가져오기
+		SecurityUser user = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("username", user.getUsername());
 		Boards board = boardService.boardDetail(boardIdx);
 		model.addAttribute("board", board);
 		// 게시판으로 다시 이동
@@ -179,13 +182,16 @@ public class BoardController {
 
 	// 수정하고 업데이트
 	@RequestMapping(value = "/board/boardUpdate/{boardIdx}", method = RequestMethod.POST)
-	public String boardUpdate(@PathVariable("boardIdx") int boardIdx, Boards board) {
+	public String boardUpdate(@PathVariable("boardIdx") int boardIdx, Boards board, Model model) {
 
 		int hitCnt = board.getHitCnt();
 
 		board.setBoardIdx(boardIdx);
+		
+		SecurityUser user = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("username", user.getUsername());
 
-		boardService.saveBoards(board, null, hitCnt + 1);
+		boardService.saveBoards(board, hitCnt + 1);
 		// 게시판으로 다시 이동
 		return "redirect:/board/boardList";
 	}
@@ -198,7 +204,7 @@ public class BoardController {
 
 		board.setBoardIdx(boardIdx);
 
-		boardService.saveBoards(board, null, hitCnt + 1);
+		boardService.saveBoards(board, hitCnt + 1);
 		// 게시판으로 다시 이동
 		return "redirect:/board/boardList/admin";
 	}
@@ -223,34 +229,34 @@ public class BoardController {
 		return "redirect:/board/boardList/admin";
 	}
 
-	// 파일 다운로드
-	@RequestMapping(value = "/board/downloadBoardFile", method = RequestMethod.GET)
-	public void downloadBoardFile(@RequestParam("idx") int idx, @RequestParam("boardIdx") int boardIdx,
-			HttpServletResponse response) throws Exception {
-
-		Files boardFile = boardService.selectFileInfo(idx, boardIdx);
-		// System.out.println("===============================>"+idx);
-		// System.out.println("===============================>"+boardIdx);
-
-		if (ObjectUtils.isEmpty(boardFile) == false) { // 파일이 있다면
-			String fileName = boardFile.getOriginalFileName();
-
-			byte[] files = FileUtils.readFileToByteArray(new File(boardFile.getStoredFilePath()));
-
-			// response 헤더에 설정
-			response.setContentType("application/octet-stream");
-			response.setContentLength(files.length); // 길이
-			response.setHeader("Content-Disposition",
-					"attachment; filename=\"" + URLEncoder.encode(fileName, "UTF-8") + "\";");
-			response.setHeader("Content-Transfer-Encoding", "binary");
-
-			response.getOutputStream().write(files); // 버퍼 출력
-			response.getOutputStream().flush(); // 버퍼에 있는거 밀어내기
-			response.getOutputStream().close();
-
-//			System.out.println("=====================> idx :" + idx);
-//			System.out.println("=====================> boardIdx :" + boardIdx);
-		}
-	}
+//	// 파일 다운로드
+//	@RequestMapping(value = "/board/downloadBoardFile", method = RequestMethod.GET)
+//	public void downloadBoardFile(@RequestParam("idx") int idx, @RequestParam("boardIdx") int boardIdx,
+//			HttpServletResponse response) throws Exception {
+//
+//		Files boardFile = boardService.selectFileInfo(idx, boardIdx);
+//		// System.out.println("===============================>"+idx);
+//		// System.out.println("===============================>"+boardIdx);
+//
+//		if (ObjectUtils.isEmpty(boardFile) == false) { // 파일이 있다면
+//			String fileName = boardFile.getOriginalFileName();
+//
+//			byte[] files = FileUtils.readFileToByteArray(new File(boardFile.getStoredFilePath()));
+//
+//			// response 헤더에 설정
+//			response.setContentType("application/octet-stream");
+//			response.setContentLength(files.length); // 길이
+//			response.setHeader("Content-Disposition",
+//					"attachment; filename=\"" + URLEncoder.encode(fileName, "UTF-8") + "\";");
+//			response.setHeader("Content-Transfer-Encoding", "binary");
+//
+//			response.getOutputStream().write(files); // 버퍼 출력
+//			response.getOutputStream().flush(); // 버퍼에 있는거 밀어내기
+//			response.getOutputStream().close();
+//
+////			System.out.println("=====================> idx :" + idx);
+////			System.out.println("=====================> boardIdx :" + boardIdx);
+//		}
+//	}
 
 }

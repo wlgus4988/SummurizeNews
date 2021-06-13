@@ -1,8 +1,31 @@
 <!DOCTYPE html>
 <!-- 타임리프 / 레이아웃 : default -->
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/default">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+	rel="stylesheet" type="text/css" />
+
+
+</head>
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css" rel="stylesheet" />
 
 <!-- index.html 고유 CSS 추가 -->
 <th:block layout:fragment="/style.css">
@@ -12,12 +35,71 @@
 <th:block layout:fragment="script">
 </th:block>
 
+
 <div layout:fragment="content">
+	<!-- Masthead-->
 
+	<header class="masthead" align='justify'>
+		<div class="container" id="home">
+			<div class="masthead-subheading">어서오세요 사용자분!</div>
+			<div class="masthead-heading text-uppercase">It's Nice To Meet
+				You</div>
+			<a class="btn btn-primary btn-xl text-uppercase" href="#help">서비스
+				이용안내</a>
+			<!-- 버튼 링크는 나중에 -->
+		</div>
+	</header>
+	<!-- Services-->
+	<section class="page-section" id="services">
+		<div class="container">
+			<div class="text-center">
+				<h2 class="section-heading text-uppercase">Services</h2>
+				<h3 class="section-subheading text-muted">This is the service
+					we provide.</h3>
+			</div>
+			<div class="row text-center">
+				<!-- <div class="col-md-4">
+					<span class="fa-stack fa-4x"> <i
+						class="fas fa-circle fa-stack-2x text-primary"></i> <i
+						class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+					</span>
+					<h4 class="my-3">E-Commerce</h4>
+					<p class="text-muted">Lorem ipsum dolor sit amet, consectetur
+						adipisicing elit. Minima maxime quam architecto quo inventore
+						harum ex magni, dicta impedit.</p>
+				</div> -->
+				<div class="col-md-4">
+					<span class="fa-stack fa-4x"> <i
+						class="fas fa-circle fa-stack-2x text-primary"></i> <i
+						class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+					</span>
+					<h4 class="my-3">Document summary</h4>
+					<p class="text-muted">기사나 긴 글 입력시, 3줄의 단문으로 요약을 제공합니다.</p>
+				</div>
+				<div class="col-md-4">
+					<span class="fa-stack fa-4x"> <i
+						class="fas fa-circle fa-stack-2x text-primary"></i> <i
+						class="fas fa-lock fa-stack-1x fa-inverse"></i>
+					</span>
+					<h4 class="my-3">Web Security</h4>
+					<p class="text-muted">로그인을 통한 회원만 사용이 가능해 사용자의 개인 정보를 보호합니다.</p>
+				</div>
+			</div>
+		</div>
+	</section>
 
-<div class="wrapper">
-  <div class="content">사용자 페이지입니다.</div>
-</div>
+	<!-- help-->
+	<section class="page-section" id="help">
+		<div class="container">
+			<div class="text-center">
+				<h2 class="section-heading text-uppercase">서비스 이용안내</h2>
+				<h3 class="section-subheading text-muted">도움말</h3>
+			</div>
+			<form id="contactForm">
+				<p>본 서비스는 데모 버전의 서비스이며 아직 미완성임을 명시합니다.</p>
 
+			</form>
+		</div>
+	</section>
 </div>
 </html>

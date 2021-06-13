@@ -43,34 +43,32 @@
 			</p>
 			<p class="brown--text">파일을 첨부해주세요</p>
 		</div>
-		<form id="frm" name="frm" method="POST" action="/test/textview"
-			enctype="multipart/form-data">
-			<input type="hidden" name="csrfmiddlewaretoken"
-				value="91U9v4bfopWesr5f7pReLJ2xEdBDXzP5Dx4EK6OjI1f2KNVEJ5LWBveGUyLYp5KB">
-			<input ref="content" type="hidden" value="" />
+		 <form id="frm" name="frm" method="POST" action="/test/textview" enctype="multipart/form-data">
+			
 			<div class="mb-3">
-				<v-frame name="image" label="이미지" v-model="image"> <input
-					type="file" id="files" name="files" multiple="multiple">
+				<v-frame name="image" label="이미지" v-model="image"> 
+				<input type="file" id="files" name="files" multiple="multiple">
 			</div>
-			<div class="text-right mb-3">
+			 <div class="text-right mb-3">
 				<v-btn outlined color="primary" type="submit" @click="submit">
 				추출</v-btn>
-			</div>
-		</form>
-		<form role="form" th:method="GET" th:action="@{/test/mainview}">
+			</div> 
+
 			<div class="v-card v-sheet v-sheet--shaped theme--light"
 				style="margin-top: 70px;">
 				<div class="v-card__title">추출 결과</div>
 				<div class="mb-3">
 					<div class="v-card__text">
-						<Ul th:text="${text}">
-
-						</Ul>
+						 <Ul th:text="${OCR}">
+						</Ul> 
 					</div>
 				</div>
 			</div>
+			  <v-btn outlined color="primary"><a href="/test/textview_">
+				다시</a></v-btn>
 		</form>
-
+	
+				
 		<style>
 #container {
 	max-width: 640px;

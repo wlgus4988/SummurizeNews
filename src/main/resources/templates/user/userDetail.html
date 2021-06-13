@@ -1,46 +1,63 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>사용자 상세</title>
-</head>
-<link rel="stylesheet" th:href="@{/style.css}"></link>
-<body>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/default">
+
+index.html 고유 css 추가
+<th:block layout:fragment="css">
+</th:block>
+
+index.html 고유 스크립트 추가
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content">
 	<div class="container">
-		<h2>사용자 상세</h2>
-		
-		 <form role="form" th:method="POST" th:action="'/user/userUpdate/' + ${user.username}" >
-		<!--  <form id="frm" name="frm" method="POST" th:action="'/user/userUpdate/'" > -->
-			<table class="board_detail"> 
+		<p>
+		<h1>마이페이지</h1>
+		<form id="frm" name="frm" method="POST"
+			th:action="'/user/userUpdate/' + ${user.username}">
+			<table>
+				<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+				<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 				<tr>
-					<td>아이디</td>
-					<td><input type="text" id="username" name="username" th:value="${user.username}" disabled='disabled'/></td> <!-- readonly="readonly" -->
+					<th>ID</th>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+						id="username" name="username" th:value="${user.username}"
+						disabled='disabled' /></td>
 				</tr>
 				<tr>
-					<td>패스워드</td>
-					<td><input type="text" id="pw" name="pw" th:value="${user.pw}"/></td>
+					<th>password</th>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="pw"
+						name="pw" th:value="${user.pw}" /></td>
 				</tr>
 				<tr>
-					<td>이름</td>
-					<td><input type="text" id="name" name="name" th:value="${user.name}"/></td>
+					<th>name</th>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="name"
+						name="name" th:value="${user.name}" /></td>
 				</tr>
 				<tr>
-					<td>이메일</td>
-					<td><input type="text" id="email" name="email" th:value="${user.email}"/></td>
+					<th>E-mail</th>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+						id="email" name="email" th:value="${user.email}" /></td>
 				</tr>
 				<tr>
-					<td>권한</td>
-					<td><input type="text" id="role" name="role"  th:value="${user.role}"/></td>
+					<th>role</th>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="role"
+						name="role" th:value="${user.role}" /></td>
+
 				</tr>
 			</table>
-			<input type="submit" id="submit" value="수정" class="btn"> 
-			<button>
-				<a href="/user/userDelete/" th:attrappend="href=${user.username}">삭제</a>
-			</button>
-			<button>
-				<a href="/user/userList">리스트</a>
-			</button>
+			<p>
+			<p>
+				<input type="submit" id="submit" value="수정" class="btn" />
+				<!-- <button>
+					<a href="/user/userDelete/" th:attrappend="href=${user.username}">삭제</a>
+				</button> -->
+				<button>
+					<a href="/home/user/return">수정 나가기</a>
+				</button>
 		</form>
 	</div>
-</body>
+</div>
 </html>
