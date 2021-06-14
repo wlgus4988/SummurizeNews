@@ -39,33 +39,33 @@
 		<v-app> <v-main> <v-container id="container">
 		<div class="mt-5 mb-5">
 		<p>
-				<span class="text-h3 text-bold">기사 요약</span>
+				<span class="text-h3 text-bold">문장 생성</span>
 		</p>
-			<p class="brown--text">10문장 이상, 10000자 이하, 50문장 이하의 텍스트를 넣어주세요.</p>
+			<p class="brown--text">텍스트를 입력하세요</p>
 		</div>
-		<form action="/test/mainview" method="post">
+		<form action="/test/maketext" method="post">
 			<input type="hidden" name="csrfmiddlewaretoken"
 				value="91U9v4bfopWesr5f7pReLJ2xEdBDXzP5Dx4EK6OjI1f2KNVEJ5LWBveGUyLYp5KB">
 			<input ref="content" type="hidden" value="" />
 			<div class="mb-3">
-				<v-textarea outlined hide-details name="content" label="요약하고 싶은 텍스트"
-					v-model="content" />
+				<v-textarea outlined hide-details name="contents" 
+					v-model="contents" />
 			</div>
 			<div class="text-right mb-3">
 				<span class="grey--text mr-3">{( len )}자</span>
 				<v-btn outlined color="primary" type="submit" @click="submit">
-				요약하기 </v-btn>
+				생성하기 </v-btn>
 			</div>
 
 
 		</form>
-		<form role="form" th:method="GET" th:action="@{/test/mainview}">
+		<form role="form" th:method="GET" th:action="@{/test/maketext}">
 			<div class="v-card v-sheet v-sheet--shaped theme--light"
 				style="margin-top: 70px;">
-				<div class="v-card__title">요약 결과</div>
+				<div class="v-card__title">생성 결과</div>
 				<div class="mb-3">
 					<div class="v-card__text">
-						<Ul th:text="${result}"></Ul>
+						<Ul th:text="${make}"></Ul>
 					</div>
 				</div>
 			</div>

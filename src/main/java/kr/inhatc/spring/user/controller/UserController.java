@@ -170,6 +170,45 @@ public class UserController {
 
 		return "/user/test";
 	}
+	
+	@RequestMapping(value = "/test/maketext", method = { RequestMethod.GET, RequestMethod.POST })
+	public String makeText(Model model, HttpServletRequest req) throws IOException {
+
+		SecurityUser user = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("username", user.getUsername());
+
+		String content = req.getParameter("contents");
+		
+		System.out.println("==================="+content);
+
+		String command = "python test_KoGPT2.py" + " " + content;
+
+		Process child = Runtime.getRuntime().exec(command);
+
+		String str = " ";
+
+		InputStreamReader in = new InputStreamReader(child.getInputStream(), "MS949");
+		int c = 0;
+
+		while ((c = in.read()) != -1) {
+
+			ArrayList<Character> arrays = new ArrayList<Character>();
+			arrays.add((char) c);
+
+			for (Character array : arrays) {
+				str += array;
+			}
+
+		}
+
+		model.addAttribute("make", str);
+
+		System.out.println("====================>"+str);
+		in.close();
+
+		return "/test/maketext";
+	}
+	
 
 	@RequestMapping(value = "/test/textview", method = RequestMethod.GET)
 	public String text(Model model) {
