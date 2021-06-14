@@ -15,7 +15,7 @@
    <div class="container">
 		<h2>사용자 리스트 목록</h2>
 
-		<table class="table table-hover">
+		<table class="table table-hover" style="padding-top: 50px">
 			<thead>
 				<tr>
 					<th>아이디</th>
@@ -49,7 +49,7 @@
 			</tbody>
 		</table>
 		<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
+			<ul class="pagination justify-content-center"  style="padding-top: 50px">
 			 <li class="page-item" th:classappend="${1 == list.pageable.pageNumber + 1} ? 'disabled'">
                     <a class="page-link" href="#"
                         th:href="@{/user/userList/admin(page=${list.pageable.pageNumber - 1},searchText=${param.searchText})}"

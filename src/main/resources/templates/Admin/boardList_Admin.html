@@ -14,8 +14,8 @@
 <div layout:fragment="content" style="padding: 100px 1px 2px 3px;">
 
 	<div class="container">
-		<h2>게시판 목록</h2>
-		<table class="board_list" style="padding: 10px 10px 10px 10px;">
+		<h2 style="padding: 10px 5px 5px 40px;">게시판 목록</h2>
+		<table class="table table-hover" style="padding: 50px 10px 10px 60px;">
 			<colgroup>
 				<col width="15%" />
 				<col width="*" />
@@ -48,7 +48,7 @@
 			</tbody>
 		</table>
 		<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
+			<ul class="pagination justify-content-center" style="padding-top : 50px;">
 				<li class="page-item"
 					th:classappend="${1 == list.pageable.pageNumber + 1} ? 'disabled'">
 					<a class="page-link" href="#"
