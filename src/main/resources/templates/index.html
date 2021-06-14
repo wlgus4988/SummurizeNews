@@ -2,7 +2,7 @@
 <!-- 타임리프 / 레이아웃 : default -->
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout/default">
+	 layout:decorator="layout/default">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport"
@@ -25,9 +25,9 @@
 
 </head>
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="css/styles.css" rel="stylesheet" />
+<link href="/css/styles.css" rel="stylesheet" type="text/css"/>
 
-<!-- index.html 고유 CSS 추가 -->
+<!-- <!-- index.html 고유 CSS 추가 -->
 <th:block layout:fragment="/style.css">
 </th:block>
 

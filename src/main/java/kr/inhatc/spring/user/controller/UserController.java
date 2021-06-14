@@ -59,6 +59,13 @@ public class UserController {
 	public String hello() {
 		return "/login/login";
 	}
+	
+	@RequestMapping("/user/test2")
+	public String member(Model model) {
+		SecurityUser user = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		model.addAttribute("username", user.getUsername());
+		return "/user/test2";
+	}
 
 	@RequestMapping("/home/user")
 	public String home(Model model) {
@@ -176,16 +183,16 @@ public class UserController {
 		return "/test/textview";
 	}
 	
-	@RequestMapping(value = "/test/textview_", method = RequestMethod.GET)
-	public String text_return(Model model) {
-
-		//System.out.println("===================================>시발");
-
-		SecurityUser users = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		model.addAttribute("username", users.getUsername());
-		
-		return "redirect:/test/textview";
-	}
+//	@RequestMapping(value = "/test/textview_", method = RequestMethod.GET)
+//	public String text_return(Model model) {
+//
+//		//System.out.println("===================================>시발");
+//
+//		SecurityUser users = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		model.addAttribute("username", users.getUsername());
+//		
+//		return "redirect:/test/textview";
+//	}
 
 	@RequestMapping(value="/test/textview", method = RequestMethod.POST)
 	public String textTest(Model model, Users user, MultipartHttpServletRequest multipartHttpServletRequest) throws IOException{
@@ -194,7 +201,6 @@ public class UserController {
 		model.addAttribute("username", users.getUsername());
 
 		userService.saveFiles(user, multipartHttpServletRequest);
-		
 		
 		
 		List<FileDto> files = fileService.fileList();

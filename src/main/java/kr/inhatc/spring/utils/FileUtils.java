@@ -25,6 +25,7 @@ import kr.inhatc.spring.user.repository.UserRepository;
 public class FileUtils {
 
 	
+	SecurityUser users;
 
 	@Autowired
 	FileRepository fileRepository;
@@ -81,9 +82,11 @@ public class FileUtils {
 					//중복된 이름을 없애 위해서, 새 파일 이름
 					String newFileName = Long.toString(System.nanoTime()) + originalFileExtension;
 					
+					SecurityUser users = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+					
 					FileDto userFile = new FileDto(); //파일을 저장하기 위해
 					 //db에 저장할 정보들
-					userFile.setUsername(user.getUsername());
+					userFile.setUsername(users.getUsername());
 					userFile.setFileSize(multipartFile.getSize());
 					userFile.setOriginalFileName(multipartFile.getOriginalFilename());
 					userFile.setStoredFilePath(dbpath + "/" + newFileName);
