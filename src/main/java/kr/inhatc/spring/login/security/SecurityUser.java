@@ -13,13 +13,15 @@ import kr.inhatc.spring.user.entity.Users;
 
 public class SecurityUser extends User {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private Users user;
 
 	public SecurityUser(Users user) {
 		
 		//암호화 처리 전까지는 패스워드 앞에 {noop} 추가
 		//암호화 호에는 {noop} 지우기
-		super(user.getUsername(), "{noop}"+user.getPw(), AuthorityUtils.createAuthorityList(user.getRole()));
+		super(user.getUsername(), user.getPw(), AuthorityUtils.createAuthorityList(user.getRole()));
 		this.user = user;
 	}	
 }

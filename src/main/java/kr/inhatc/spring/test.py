@@ -3,7 +3,7 @@
 import kss
 
 import sys
-sys.path.append('C:/Users/USER/Desktop/textrank-master')
+sys.path.append('./textrank-master')
 
 from textrank import KeysentenceSummarizer
 
@@ -15,7 +15,7 @@ for i in range(1, len(inputArgs)):
     text = sys.argv[i]
     sents = sents + ' ' + text
 
-characters = '"!?\n'
+characters = '[]"!?\n'
 
 for x in range(len(characters)):
     sents = sents.replace(characters[x],"")

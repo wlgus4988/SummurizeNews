@@ -1,30 +1,19 @@
 package kr.inhatc.spring.user.entity;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import kr.inhatc.spring.board.entity.Boards;
-//import kr.inhatc.spring.board.entity.Files;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Builder.Default;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Entity 				// 데이블을 만드는 엔티티 객체 생성
 @Table(name = "PRO_USERS") 	// 테이블명 다르게 줌('users' 로)
@@ -51,9 +40,4 @@ public class Users {
 	private String enabled;
 	private String role;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinColumn(name="username")
-	@ElementCollection
-	private List<FileDto> fileList;
-
 }

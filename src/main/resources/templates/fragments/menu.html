@@ -15,15 +15,15 @@
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/home/user">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="/board/boardList">전체 게시판</a></li>
-					<li class="nav-item"><a class="nav-link" href="/test/mainview">요약</a></li>
-					<li class="nav-item"><a class="nav-link" href="/test/textview">텍스트 추출</a></li>
-					<li class="nav-item"><a class="nav-link" href="/user/test">맞춤법 검사</a></li>
-					<li class="nav-item"><a class="nav-link" href="/test/maketext">문장 생성</a></li>
-					<li class="nav-item"><a class="nav-link" href="/user/test2">개발자 소개&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+					<li class="nav-item"><a class="nav-link" href="/text/article_summary">요약</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/text/extract_text}" th:method="GET">텍스트 추출</a></li>
+					<li class="nav-item"><a class="nav-link" href="/text/spell_check">맞춤법 검사</a></li>
+					<li class="nav-item"><a class="nav-link" href="/text/sentence_generation">문장 생성</a></li>
+					<li class="nav-item"><a class="nav-link" href="/user/developer">개발자 소개&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
 				</ul>
 				<a th:href="@{/user/userDetail/{username}(username=${username})}" th:text="${username}+'님'"></a>
 				<form class="form-inline my-2 my-lg-0">
-				&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;
 					<button class="btn btn-outline-danger btn-sm" type="button">
 						<a th:href="@{/login/logout}" class="text-white">로그아웃</a>
 					</button>

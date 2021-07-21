@@ -1,4 +1,4 @@
-package kr.inhatc.spring.user.entity;
+package kr.inhatc.spring.text.entity;
 
 import java.util.Date;
 import java.util.List;

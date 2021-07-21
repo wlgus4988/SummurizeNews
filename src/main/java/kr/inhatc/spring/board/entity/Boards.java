@@ -34,7 +34,7 @@ public class Boards {
 
 	@Id
 	@Column(name = "BOARD_IDX")
-	// Auto시퀀스 방식
+	// Auto 시퀀스 방식
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int boardIdx;
 	
@@ -46,11 +46,6 @@ public class Boards {
 	@Temporal(TemporalType.DATE)
 	@Column(insertable = false, updatable = false, columnDefinition = "date default sysdate")
 	private Date createDatetime;
-	// private char deleteYN;
 
-//	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//	@JoinColumn(name = "boardIdx")
-//	@ElementCollection
-//	private Collection<Files> fileList;
 
 }

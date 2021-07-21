@@ -1,36 +1,60 @@
 <!DOCTYPE html>
-<!-- 타임리프 / 레이아웃 : default -->
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout/default">
 
-<!-- index.html 고유 CSS 추가 -->
-<link href="/css/styles.css" rel="stylesheet" />
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
 
-<!-- index.html 고유 스크립트 추가  -->
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Font Awesome icons (free version)-->
+<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Google fonts-->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+	rel="stylesheet" type="text/css" />
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+	rel="stylesheet" type="text/css" />
+
+
+</head>
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css" rel="stylesheet" />
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="/style.css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
 <th:block layout:fragment="script">
 </th:block>
 
-<div layout:fragment="content" style="padding: 100px 1px 2px 3px;">
-	<div class="container">
+<div layout:fragment="content" style="padding-bottom: 100px;">
+	<div class="container" style="padding: 100px 1px 2px 3px;">
 		<h2>게시판 작성</h2>
 
 		<form id="frm" name="frm" method="POST" action="/board/boardInsert">
-			<table class="board_detail" style="padding: 10px 10px 10px 10px;">
-				<tr>
-					<td>제목</td>
-					<td><input type="text" id="title" name="title"></td>
+			<table class="table table-hover"
+				style="padding: 50px 10px 10px 60px;">
+				<tr style="border-top-width: 1px">
+					<td style="font-weight: 700; font-size: 18px">제목</td>
+					<td><input type="text" id="title" name="title"
+						style="width: 100%"></td>
 				</tr>
 				<tr>
-					<td colspan="2"><textarea id="contents" name="contents"></textarea>
-					</td>
+					<td colspan="2"><textarea id="contents" name="contents"
+							style="width: 100%; height: 300px;"></textarea></td>
 				</tr>
 			</table>
-			<!-- <input type="file" id="files" name="files" multiple="multiple"> -->
-			<input type="submit" id="submit" value="저장" class="btn">
+			<input type="submit" id="submit" value="저장" class="btn btn-outline-primary" style="float:right; padding:10px, 10px, 25px,25px; margin-right: 10px;">
 		</form>
 	</div>
-	</div>
+</div>
 
 </body>
 </html>

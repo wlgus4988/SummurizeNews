@@ -15,17 +15,15 @@
 
 	<div class="container">
 		<h2>게시판 상세</h2>
-<!-- 
-		 <form id="frm" name="frm" th:method="POST"> --> <!-- th:action="'/board/boardUpdate/' + ${board.boardIdx}" -->
-		 <form role="form" th:method="POST" th:action="'/board/boardUpdate/' + ${board.boardIdx}">
-			<table class="board_detail" style="padding: 10px 10px 10px 10px;">
+		<form role="form" th:method="POST"
+			th:action="'/board/boardUpdate/' + ${board.boardIdx}">
+			<table class="table table-hover" style="text-align: center;">
 				<colgroup>
 					<col width="15%" />
 					<col width="35%" />
 					<col width="15%" />
 					<col width="35%" />
 				</colgroup>
-				<caption>게시글 상세내용</caption>
 				<tbody>
 					<tr>
 						<th scope="row">글번호</th>
@@ -41,35 +39,39 @@
 					</tr>
 					<tr>
 						<th scope="row">제목</th>
-						<td colspan="3"><input type="text" id="title" name="title"
-							th:value="${board.title}"></td>
+						<td th:unless="${username} == ${board.username}"
+							th:text="${board.title}">
+						<td colspan="3" th:if="${username} == ${board.username}"><input
+							type="text" id="title" name="title" th:value="${board.title}"
+							style="width: 100%"></td>
+						<td colspan="2"></td>
 					</tr>
 					<tr>
-						<td colspan="4" class="view_text">
-						<textarea title="내용" id="contents" name="contents" th:text=${board.contents}></textarea>
+						<td colspan="4" th:unless="${username} == ${board.username}"
+							th:text=${board.contents}
+							style="width: 100%; height: 250px; text-align: left">
+						<td colspan="4" th:if="${username} == ${board.username}"><textarea
+								title="내용" id="contents" name="contents"
+								th:text=${board.contents} style="width: 100%; height: 250px;"></textarea></td>
 					</tr>
 				</tbody>
 			</table>
-			
-			<input type="submit" id="submit" value="수정하기" class="btn"> 
-			<button>
-				<a href="/board/boardDelete/" th:attrappend="href=${board.boardIdx}">삭제하기</a>
-			</button>
-			<button>
-				<a href="/board/boardList">목록으로</a>
-			</button>
-		
-	<!-- 		<input type="hidden" name="boardIdx" th:value="${board.boardIdx}"> -->
-		</form>
-		
-		<!-- <div class="file_list">
-		<a th:each="file : ${board.fileList}"    // 문자열과 섞이면 안된다
-		th:href="@{/board/downloadBoardFile(idx=${file.idx}, boardIdx=${file.boardIdx})}"
-		th:text="|${file.originalFileName} (${file.fileSize}kb)|"> </a>  -->
 
-	
+			<div style="margin: 10px; padding-bottom: 100px">
+				<span th:if="${username} == ${board.username}"> <input
+					type="submit" id="submit" value="수정하기"
+					class="btn btn-outline-primary" style="margin-right: 10px;">
+					<a href="/board/boardDelete/" class="btn btn-outline-primary"
+					th:attrappend="href=${board.boardIdx}">삭제하기</a>
+				</span> <a  class="btn btn-outline-primary"
+					style="float: right;" onclick="window.history.back()">목록으로</a>
+			</div>
+		</form>
 	</div>
 </div>
-</div>
-</body>
+<script type="text/javascript">
+	function goBack(){
+	window.history.back();
+	}
+	</script>
 </html>

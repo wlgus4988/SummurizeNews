@@ -16,15 +16,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import kr.inhatc.spring.login.security.SecurityUser;
-import kr.inhatc.spring.user.entity.FileDto;
+import kr.inhatc.spring.text.entity.FileDto;
 import kr.inhatc.spring.user.entity.Users;
-import kr.inhatc.spring.user.repository.FileRepository;
+import kr.inhatc.spring.text.repository.FileRepository;
 import kr.inhatc.spring.user.repository.UserRepository;
 
 @Component
 public class FileUtils {
 
-	
 	SecurityUser users;
 
 	@Autowired
@@ -32,16 +31,13 @@ public class FileUtils {
 	
 	public List<FileDto> parseFileInfo(Users user, MultipartHttpServletRequest multipartHttpServletRequest){
 		
-		
 		if(ObjectUtils.isEmpty(multipartHttpServletRequest)) {
 			return null;
 		}
 		
 		List<FileDto> fileList = new ArrayList<FileDto>();
 		
-		
-		
-		//파일이 업로드 될 폴더 생성
+		// 파일이 업로드 될 폴더 생성
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd");
 		ZonedDateTime current = ZonedDateTime.now();
 		String path = "src/main/resources/static/images/" + current.format(format);
@@ -57,15 +53,18 @@ public class FileUtils {
 		// 원래 확장자
 		String originalFileExtension = null;
 		
-		//원소가 있을때 까지 부르나.
+		// 원소가 있는 동안
 		while(iter.hasNext()) {
-			//리스트 뽑기
+			
+			// 리스트 뽑기
 			List<MultipartFile> list = multipartHttpServletRequest.getFiles(iter.next());
 			
 			for (MultipartFile multipartFile : list) {
 				if(multipartFile.isEmpty() == false) {
-					//타입을 가져옴
+					
+					// 타입을 가져옴
 					String contentType = multipartFile.getContentType();
+					
 					if(ObjectUtils.isEmpty(contentType)) {
 						break;
 					} else {
@@ -79,13 +78,14 @@ public class FileUtils {
 							break;
 						}
 					}
-					//중복된 이름을 없애 위해서, 새 파일 이름
+					
+					// 중복된 이름을 없애기 위해서, 새 파일 이름
 					String newFileName = Long.toString(System.nanoTime()) + originalFileExtension;
 					
 					SecurityUser users = (SecurityUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 					
-					FileDto userFile = new FileDto(); //파일을 저장하기 위해
-					 //db에 저장할 정보들
+					FileDto userFile = new FileDto(); // 파일을 저장하기 위해
+					 // db에 저장할 정보들
 					userFile.setUsername(users.getUsername());
 					userFile.setFileSize(multipartFile.getSize());
 					userFile.setOriginalFileName(multipartFile.getOriginalFilename());
@@ -104,7 +104,6 @@ public class FileUtils {
 				}
 			}
 		}
-		
 		return fileList;
 	}
 }

@@ -13,14 +13,14 @@
 
 <div layout:fragment="content" style="padding: 100px 1px 2px 3px;">
 
-	<div class="container">
-		<h2>게시판 목록</h2>
-		<table class="board_list" style="padding: 10px 10px 10px 10px;">
+	<div class="container" >
+		<h2 >게시판 목록</h2>
+		<table class="table table-hover" style="text-align:center; table-layout:fixed">
 			<colgroup>
 				<col width="10%" />
 				<col width="*" />
-				<col width="5%" />
-				<col width="15%" />				
+				<col width="10%" />
+				<col width="20%" />				
 				<col width="18%" />
 			</colgroup>
 			<thead>
@@ -39,11 +39,11 @@
 						<!-- <a href="/board/boardDetail?boardIdx=" th:attrappend="href=${vo.boardIdx}" th:text="${vo.title}"></a>  -->
 						<a
 						th:href="@{/board/boardDetail/admin/{boardIdx}(boardIdx=${vo.boardIdx})}"
-						th:text="${vo.title}"></a>
+						th:text="${vo.title}" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"></a>
 					</td>
 					<td th:text="${vo.hitCnt}"></td>
-					<td th:text="${vo.username}"></td>
-					<td th:text="${vo.createDatetime}"></td>
+					<td th:text="${vo.username}" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"></td>
+					<td th:text="${vo.createDatetime}" style="overflow:hidden;white-space:nowrap;text-overflow:ellipsis;"></td>
 				</tr>
 				<tr th:unless="${#lists.size(list)} > 0">
 					<td colspan="4">조회된 결과가 없습니다.</td>
@@ -76,11 +76,13 @@
 				<a href="/board/boardInsert/admin" class="btn">글쓰기</a>
 			</button>
 		</form>
-		<form class="d-flex" method="GET" th:action="@{/board/boardList/admin}">
+		<form class="d-flex" method="GET" th:action="@{/board/boardList/admin}" style="padding-bottom: 100px">
 			<input class="form-control me-2" type="search" placeholder="Search"
 				id="searchText" name="searchText" aria-label="Search"
 				style="width: 230px" th:value="${param.searchText}">
 			<button class="btn btn-light me-2" type="submit">Search</button>
 		</form>
 	</div>
+	</div>
+</body>
 </html>

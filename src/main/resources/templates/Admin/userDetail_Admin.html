@@ -1,51 +1,69 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+<!-- 타임리프 / 레이아웃 : default -->
+<html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorator="layout/default_Admin">
 
-index.html 고유 css 추가
-<th:block layout:fragment="css">
-</th:block>
+<!-- index.html 고유 CSS 추가 -->
+<link href="/css/styles.css" rel="stylesheet" />
 
-index.html 고유 스크립트 추가
+<!-- index.html 고유 스크립트 추가 -->
 <th:block layout:fragment="script">
 </th:block>
 
-<div layout:fragment="content">
+<div layout:fragment="content" style="padding: 100px 1px 2px 3px;">
+
 	<div class="container">
 		<h2>사용자 상세</h2>
-		
-		 <form role="form" th:method="POST" th:action="'/user/userUpdate/admin/' + ${user.username}" >
-		<!--  <form id="frm" name="frm" method="POST" th:action="'/user/userUpdate/'" > -->
-			<table class="board_detail"> 
+
+		<form role="form" th:method="POST"
+			th:action="'/user/userUpdate/admin/' + ${user.username}">
+			<table style="text-align: center; margin: auto;">
 				<tr>
-					<td>아이디</td>
-					<td><input type="text" id="username" name="username" th:value="${user.username}" disabled='disabled'/></td> <!-- readonly="readonly" -->
+					<th style="letter-spacing: 1px">ID</th>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+						id="username" name="username" th:value="${user.username}"
+						disabled='disabled' /></td>
+
 				</tr>
 				<tr>
-					<td>패스워드</td>
-					<td><input type="text" id="pw" name="pw" th:value="${user.pw}"/></td>
+					<th style="letter-spacing: 1px">password</th>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="password"
+						id="pw" name="pw" th:value="${user.pw}" /></td>
 				</tr>
 				<tr>
-					<td>이름</td>
-					<td><input type="text" id="name" name="name" th:value="${user.name}"/></td>
+					<th style="letter-spacing: 1px">name</th>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="name"
+						name="name" th:value="${user.name}" /></td>
 				</tr>
 				<tr>
-					<td>이메일</td>
-					<td><input type="text" id="email" name="email" th:value="${user.email}"/></td>
+					<th style="letter-spacing: 1px">E-mail</th>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text"
+						id="email" name="email" th:value="${user.email}" /></td>
 				</tr>
 				<tr>
-					<td>권한</td>
-					<td><input type="text" id="role" name="role"  th:value="${user.role}"/></td>
+					<th style="letter-spacing: 1px">role</th>
+					<td>&nbsp;&nbsp;&nbsp;&nbsp; <select style="width:215px" id="role"
+						name="role" th:if="${#strings.contains(user.role,'ADMIN')}">
+							<option value="ROLE_MEMBER" >ROLE_MEMBER</option>
+							<option value="ROLE_ADMIN" selected="selected">ROLE_ADMIN</option>
+					</select>
+					<select style="width:217px" id="role"
+						name="role" th:if="${#strings.contains(user.role,'MEMBER')}">
+							<option value="ROLE_MEMBER" selected="selected">ROLE_MEMBER</option>
+							<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+					</select></td>
+
 				</tr>
 			</table>
-			<input type="submit" id="submit" value="수정" class="btn"> 
-			<button>
-				<a href="/user/userDelete/admin/" th:attrappend="href=${user.username}">삭제</a>
-			</button>
-			<button>
-				<a href="/user/userList/admin">리스트</a>
-			</button>
+			<div style="margin-top: 30px; padding-bottom: 100px">
+				<input type="submit" id="submit" value="수정"
+					class="btn btn-outline-primary"> &nbsp;&nbsp;<a
+					href="/user/userDelete/admin/" class="btn btn-outline-primary"
+					th:attrappend="href=${user.username}">삭제</a> <a
+					onclick="window.history.back()" style="float: right;"
+					class="btn btn-outline-primary">리스트</a>
+			</div>
 		</form>
 	</div>
 </div>

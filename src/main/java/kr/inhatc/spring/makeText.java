@@ -7,13 +7,14 @@ import java.util.ArrayList;
 public class makeText {
 
 	public static void main(String[] args) throws IOException {
+		
 		String content = "근육이 커지기 위해서는";
 
 		String command = "python test_KoGPT2.py" + " " + content;
 
 		Process child = Runtime.getRuntime().exec(command);
 
-		String str = "";
+		String text = " ";
 
 		InputStreamReader in = new InputStreamReader(child.getInputStream(), "MS949");
 
@@ -25,12 +26,12 @@ public class makeText {
 			arrays.add((char) c);
 
 			for (Character array : arrays) {
-				str += array;
+				text += array;
 			}
 
 		}
 		
-		System.out.println(str);
+		System.out.println(text);
 
 		in.close();
 	}
