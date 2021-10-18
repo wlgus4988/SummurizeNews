@@ -2,16 +2,15 @@ package kr.inhatc.spring;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
-public class Main_spell {
-
+public class Main_extract_text {
 	public static void main(String[] args) throws IOException {
-		String message = "맞춤법 틀리면 왜 않되?";
-		// String message= " ";
-		String command = "python tests.py" + " " + message;
+		
+		String message = "C:/Users/USER/Capston/SummurizeNews/src/main/resources/static"+"/images/20210613/880215698678800.jpg";
+		String command = "python extract_text.py" + " " + message +" ";
 
 		Process child = Runtime.getRuntime().exec(command);
+
 
 		InputStreamReader in = new InputStreamReader(child.getInputStream(), "MS949");
 		int c = 0;
@@ -20,8 +19,6 @@ public class Main_spell {
 
 			System.out.print((char) c);
 		}
-
 		in.close();
 	}
-
 }

@@ -50,7 +50,7 @@ public class TextController {
 		String content = req.getParameter("content");
 
 		// cmd 명령어
-		String command = "python test.py" + " " + content;
+		String command = "python article_summary.py" + " " + content;
 
 		Process child = Runtime.getRuntime().exec(command);
 
@@ -95,7 +95,7 @@ public class TextController {
 
 		String content = req.getParameter("content");
 
-		String command = "python tests.py" + " " + content;
+		String command = "python spell_check.py" + " " + content;
 
 		Process child = Runtime.getRuntime().exec(command);
 
@@ -138,7 +138,7 @@ public class TextController {
 		String content = req.getParameter("content");
 
 		if (content != null) {
-			String command = "python test_KoGPT2.py" + " " + content;
+			String command = "python sentence_generation.py" + " " + content;
 
 			Process child = Runtime.getRuntime().exec(command);
 
@@ -191,7 +191,7 @@ public class TextController {
 
 		String message = "C:/Users/USER/Capston/SummurizeNews/src/main/resources/static" + path;
 
-		String command = "python image_test.py" + " " + message + " " + "stdout -l kor";
+		String command = "python extract_text.py" + " " + message + " " + "stdout -l kor";
 
 		Process child = Runtime.getRuntime().exec(command);
 
