@@ -41,7 +41,7 @@
 			</p>
 			<p class="brown--text">10문장 이상, 10000자 이하, 50문장 이하의 텍스트를 넣어주세요.</p>
 		</div>
-		<form action="/test/mainview" method="post">
+		<form action="/text/article_summary" method="post">
 			<input type="hidden" name="csrfmiddlewaretoken"
 				value="91U9v4bfopWesr5f7pReLJ2xEdBDXzP5Dx4EK6OjI1f2KNVEJ5LWBveGUyLYp5KB">
 			<input ref="content" type="hidden" value="" />
@@ -57,7 +57,7 @@
 
 
 		</form>
-		<form role="form" th:method="GET" th:action="@{/test/mainview}">
+		<form role="form" th:method="GET" th:action="@{/text/article_summary}">
 			<div class="v-card v-sheet v-sheet--shaped theme--light"
 				style="margin-top: 70px;">
 				<div class="v-card__title">요약 결과</div>

@@ -44,7 +44,7 @@
 			</p>
 			<p class="brown--text">맞춤법을 검사할 문장을 넣어주세요</p>
 		</div>
-		<form action="/test/test" method="post">
+		<form action="/text/spell_check" method="post">
 			<input type="hidden" name="csrfmiddlewaretoken"
 				value="91U9v4bfopWesr5f7pReLJ2xEdBDXzP5Dx4EK6OjI1f2KNVEJ5LWBveGUyLYp5KB">
 			<input ref="content" type="hidden" value="" />
@@ -59,7 +59,7 @@
 			</div>
 
 		</form>
-		<form role="form" th:method="GET" th:action="@{/test/test}">
+		<form role="form" th:method="GET" th:action="@{/text/spell_check}">
 			<div class="v-card v-sheet v-sheet--shaped theme--light"
 				style="margin-top: 70px;">
 				<div class="v-card__title">검사 결과</div>

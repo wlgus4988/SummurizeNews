@@ -43,7 +43,7 @@
 		</p>
 			<p class="brown--text">텍스트를 입력하세요</p>
 		</div>
-		<form action="/test/maketext" method="post">
+		<form action="/text/sentence_generation" method="post">
 			<input type="hidden" name="csrfmiddlewaretoken"
 				value="91U9v4bfopWesr5f7pReLJ2xEdBDXzP5Dx4EK6OjI1f2KNVEJ5LWBveGUyLYp5KB">
 			<input ref="content" type="hidden" value="" />
@@ -59,7 +59,7 @@
 
 
 		</form>
-		<form role="form" th:method="GET" th:action="@{/test/maketext}">
+		<form role="form" th:method="GET" th:action="@{/text/sentence_generation}">
 			<div class="v-card v-sheet v-sheet--shaped theme--light"
 				style="margin-top: 70px;">
 				<div class="v-card__title">생성 결과</div>
